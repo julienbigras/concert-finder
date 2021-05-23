@@ -1,16 +1,23 @@
-import { useState } from 'react';
+import React from 'react';
 import EventList from './Components/EventList';
+import Form from './Components/Form';
 import './App.css';
 
-function App() {
-  const [name, setName] = useState('friend');
+class App extends React.Component {
+  state = {
+    city: '',
+    events: [],
+  };
 
-  return (
-    <div className="App">
-      <h1>hello {name}</h1>
-      <EventList />
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        <h1>hello</h1>
+        <Form />
+        <EventList />
+      </div>
+    );
+  }
 }
 
 export default App;
