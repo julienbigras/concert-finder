@@ -1,14 +1,14 @@
-import { useState } from "react";
-import Events from "./Components/Events";
-import "./App.css";
+import { useState } from 'react';
+import EventList from './Components/EventList';
+import './App.css';
 
 function App() {
-  const [name, setName] = useState("friend");
+  const [name, setName] = useState('friend');
 
   return (
     <div className="App">
       <h1>hello {name}</h1>
-      <Events />
+      <EventList />
     </div>
   );
 }
