@@ -52,7 +52,7 @@ class App extends React.Component {
           selectValue={this.state.selectedCity}
           updateCity={this.updateCity}
         />
-        <EventList getEvents={this.getEvents} />
+        <EventList events={this.state.events} />
       </div>
     );
   }

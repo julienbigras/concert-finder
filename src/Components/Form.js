@@ -15,6 +15,7 @@ const Form = (props) => {
         <option value="ottawa">Ottawa</option>
         <option value="buffalo">Buffalo</option>
         <option value="detroit">Detroit</option>
+        <option value="new york">New York</option>
       </select>
       <button onClick={(e) => props.updateCity(e)}>Go!</button>
     </form>
