@@ -30,14 +30,12 @@ class Events extends React.Component {
         results = results.data._embedded.events;
         console.log(results, 'this is the data');
         this.setState({ events: [...results] });
-        // console.log(this.state.events, 'these are events');
-        // this.renderEvent();
       })
       .catch(() => console.log('something went wrong i guess'));
   };
 
   renderEvent = () => {
-    console.log(this.state.events, 'these are the events again babyyy');
+    // console.log(this.state.events, 'these are the events again babyyy');
     this.state.events.map((event) => {
       return <EventTile name={event.name} />;
     });
@@ -46,7 +44,7 @@ class Events extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.getEvents}>click here</button>
+        {/* <button onClick={this.props.getEvents}>click here</button> */}
         <ul>{this.renderEvent()}</ul>
       </div>
     );

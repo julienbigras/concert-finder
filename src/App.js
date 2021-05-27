@@ -1,48 +1,58 @@
 import React from 'react';
 import EventList from './Components/EventList';
+import axios from 'axios';
 import Form from './Components/Form';
+import API_DATA from './apiData';
 import './App.css';
 
 class App extends React.Component {
   state = {
-    // city: '',
-    selectValue: '',
+    selectedCity: 'toronto',
     events: [],
   };
 
   handleCityChange = (e) => {
-    this.setState({ selectValue: e.target.value });
-    console.log(this.state.selectValue, 'select value');
+    this.setState({ selectedCity: e.target.value });
+    setTimeout(() => {
+      console.log(this.state.selectedCity);
+    }, 50);
+  };
+
+  getEvents = () => {
+    axios({
+      method: 'GET',
+      url: API_DATA.rootUrl,
+      dataResponse: 'json',
+      params: {
+        apikey: API_DATA.apiKey,
+        city: this.state.selectedCity,
+        classificationName: API_DATA.classificationName,
+        size: 50,
+      },
+    })
+      .then((results) => {
+        results = results.data._embedded.events;
+        console.log(results, 'this is the data');
+        this.setState({ events: [...results] });
+      })
+      .catch(() => console.log('something went wrong i guess'));
   };
 
   updateCity = (e) => {
     e.preventDefault();
-    console.log('hello i have been clicked');
-    // this.setState({ city: city })
+    this.getEvents();
   };
 
   render() {
     return (
       <div className="App">
         <h1>Concert Wishlist</h1>
-        <form action="">
-          <label htmlFor="cities">Choose a city: </label>
-          <select
-            name="cities"
-            id="cities"
-            value={this.state.selectValue}
-            onChange={this.handleCityChange}
-          >
-            <option value="toronto">Toronto</option>
-            <option value="montreal">Montreal</option>
-            <option value="ottawa">Ottawa</option>
-            <option value="buffalo">Buffalo</option>
-            <option value="detroit">Detroit</option>
-          </select>
-          <button onClick={(e) => this.updateCity(e)}>click</button>
-        </form>
-        {/* <Form updateCity={this.updateCity} handleCityChange={this.handleCityChange} /> */}
-        <EventList />
+        <Form
+          handleCityChange={this.handleCityChange}
+          selectValue={this.state.selectedCity}
+          updateCity={this.updateCity}
+        />
+        <EventList getEvents={this.getEvents} />
       </div>
     );
   }
