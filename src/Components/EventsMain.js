@@ -8,6 +8,7 @@ class EventsMain extends React.Component {
   state = {
     selectedCity: 'toronto',
     events: [],
+    userList: [],
   };
 
   handleCityChange = (e) => {
@@ -42,6 +43,10 @@ class EventsMain extends React.Component {
     this.getEvents();
   };
 
+  addToUserList = (event) => {
+    console.log(event);
+  };
+
   render() {
     return (
       <div className="EventsMain">
@@ -51,7 +56,10 @@ class EventsMain extends React.Component {
           selectValue={this.state.selectedCity}
           updateCity={this.updateCity}
         />
-        <EventList events={this.state.events} />
+        <EventList
+          events={this.state.events}
+          addToUserList={this.addToUserList}
+        />
       </div>
     );
   }

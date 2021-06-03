@@ -6,9 +6,11 @@ const Events = (props) => {
     const events = props.events.map((event, i) => {
       return (
         <EventTile
+          eventDetails={event}
           name={event.name}
           date={event.dates.start.localDate}
           key={i}
+          addToUserList={props.addToUserList}
         />
       );
     });
