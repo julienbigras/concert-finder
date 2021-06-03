@@ -7,8 +7,6 @@ const Events = (props) => {
       return (
         <EventTile
           eventDetails={event}
-          name={event.name}
-          date={event.dates.start.localDate}
           key={i}
           addToUserList={props.addToUserList}
         />
