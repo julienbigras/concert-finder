@@ -7,7 +7,7 @@ const Header = () => {
       <div className="logoContainer"></div>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/list">My List</Link>
+        <Link to="/mylist">My List</Link>
       </nav>
     </div>
   );
